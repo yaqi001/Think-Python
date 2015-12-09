@@ -19,5 +19,20 @@
    3. **string** can convert any kinds of type to string.
 
 3. 数学函数
+
+   ~~~ bash
+   import math
+
+   a = math.log10(100)
+   b = math.log(math.e)
+   print a
+   print b
+   ~~~
   
+   输出结果：
+   ~~~ bash
+   2.0
+   1.0
+   ~~~
+
    

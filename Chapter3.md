@@ -92,19 +92,121 @@
 
 3. 数学函数
 
-   ~~~ bash
-   import math
+   * 对数
+     ~~~ bash
+     import math
+     >>> math.log10(100)
+     2.0
+     >>> math.log(math.e)
+     1.0
+     ~~~
+    
+   * 三角函数
+     ~~~ bash
+     >>> degrees = 45
+     >>> radians = degrees / 360.0 * 2 * math.pi
+     >>> math.sin(radians)
+     0.7071067811865475
+     ~~~
+ 
+     \\(radians=\frac{π}{4}\\)
 
-   a = math.log10(100)
-   b = math.log(math.e)
-   print a
-   print b
-   ~~~
-  
-   输出结果：
-   ~~~ bash
-   2.0
-   1.0
-   ~~~
+     \\(\sin{\frac{π}{4}}=\frac{\sqrt{2}}{2}\\)
+ 
+   * math.e
+     ~~~ bash
+     >>> math.exp(1)
+     2.718281828459045
+     >>> math.e
+     2.718281828459045
+     ~~~
+    
+4. Composition
+    
+   > **注意**：
+   > the left side of an assignment statement has to be a variable name. Any other expression on the left side is a syntax error (we will see exceptions to this rule later).
+     ~~~ bash 
+     >>> hours = 1
+     >>> minutes = hours * 60
+     >>> hours * 60 = minutes
+       File "<stdin>", line 1
+     SyntaxError: can't assign to operator
+     ~~~
 
+5. 添加新的方法：
    
+   * 关于方法名称需要注意的地方：
+     1. 第一个字符不能是数字，其它位置可以是英语字母，数字或者一些标点符号。
+     2. 不可以是关键字。
+     3. 避免方法名称和变量名称相同。
+
+   * **定义函数的同时会创建一个同名的变量**
+     ~~~ bash
+     >>> def first():
+     ...    print 'hello world'
+     ... 
+     >>> first
+     <function first at 0x7fe5331582a8>
+     >>> type(first)
+     <type 'function'>
+     ~~~
+     The value of first is a **function object**, which has type 'function'.
+   
+   * 一旦你定义了一个函数，你就可以在其它函数中使用该函数了。
+
+6. 定义和使用：
+    
+   ~~~ python
+   def print_lyrics():
+      print "I am a lumberjack, and I'm okay."
+      print "I sleep all night and I work all day."
+
+   def repeat_lyrics():
+      print_lyrics()
+      print_lyrics()
+
+   repeat_lyrics()
+   ~~~
+
+   * Exercise 3.1：Move the last line of this program to the top, so the function call appears before the definitions. Run the program and see what error message you get.
+     ~~~ python
+     repeat_lyrics()
+
+     def print_lyrics():
+        print "I am a lumberjack, and I'm okay."
+        print "I sleep all night and I work all day."
+
+     def repeat_lyrics():
+        print_lyrics()
+        print_lyrics()
+     ~~~
+  
+     ~~~ bash
+     # 运行结果
+     [helen@zhangyingyun Python]$ python lyrics.py 
+     Traceback (most recent call last):
+       File "lyrics.py", line 1, in <module>
+         repeat_lyrics()
+     NameError: name 'repeat_lyrics' is not defined
+     ~~~
+   * Exercise 3.2：Move the function call back to the bottom and move the definition of print_lyrics after the definition of repeat_lyrics. What happens when you run this program?
+     ~~~ python
+     def repeat_lyrics():
+        print_lyrics()
+        print_lyrics()
+
+     def print_lyrics():
+        print "I am a lumberjack, and I'm okay."
+        print "I sleep all night and I work all day."
+
+     repeat_lyrics()  
+     ~~~
+     
+     ~~~ bash
+     # 运行结果
+     I am a lumberjack, and I'm okay.
+     I sleep all night and I work all day.
+     I am a lumberjack, and I'm okay.
+     I sleep all night and I work all day.
+     ~~~
+

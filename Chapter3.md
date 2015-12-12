@@ -210,3 +210,21 @@
      I sleep all night and I work all day.
      ~~~
 
+7. 执行流程
+
+   Python is good at keeping track of where it is, so each time a function completes, the program picks up where it left off in the function that called it. When it gets to the end of the program, it terminates.
+
+8. Parameters（形式参数）& arguments（实际参数）
+    
+   * Inside the function, the arguments are assigned to variables called *parameters*.
+
+   * The argument is evaluated before the function is called.
+     ~~~ bash
+     >>> def print_greeting(saying):
+     ...    print saying
+     ...    print saying
+     >>> print_greeting('hello world ' * 3)
+     hello world hello world hello world 
+     hello world hello world hello world 
+     ~~~
+

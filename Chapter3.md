@@ -154,7 +154,7 @@
    
    * 一旦你定义了一个函数，你就可以在其它函数中使用该函数了。
 
-6. 定义和使用：
+6. **定义和使用**
     
    ~~~ python
    def print_lyrics():
@@ -210,11 +210,11 @@
      I sleep all night and I work all day.
      ~~~
 
-7. 执行流程
+7. **执行流程**
 
    Python is good at keeping track of where it is, so each time a function completes, the program picks up where it left off in the function that called it. When it gets to the end of the program, it terminates.
 
-8. Parameters（形式参数）& arguments（实际参数）
+8. **Parameters（形式参数）& arguments（实际参数）**
     
    * Inside the function, the arguments are assigned to variables called *parameters*.
 
@@ -228,3 +228,147 @@
      hello world hello world hello world 
      ~~~
 
+9. **Variables and parameters are local**
+   
+   When a function terminates, the variables in this function are destroyed.
+   
+   ~~~ python
+   def cat_twice(part1, part2):
+      cat = part1 + part2
+      print_twice(cat)
+
+   def print_twice(bruce):
+      print bruce
+      print bruce
+   
+   line1 = 'Bing tiddle'
+   line2 = 'tiddle bang.'
+   cat_twice(line1, line2)
+   ~~~
+  
+   ![Chapter3.png](images/Chapter3.png)
+
+10. Stack diagrams（堆栈图）
+   
+    ~~~ python
+    def cat_twice(part1, part2):
+      cat = part1 + part2
+      print_twice(cat)
+
+   def print_twice(bruce):
+      print cat
+      print bruce
+      print bruce
+
+   line1 = 'Bing tiddle'
+   line2 = 'tiddle bang.'
+   cat_twice(line1, line2)
+   ~~~
+   
+   ~~~ bash
+   # 运行结果
+   [helen@zhangyingyun Python]$ python trackback.py 
+   Traceback (most recent call last):
+     File "trackback.py", line 12, in <module>
+       cat_twice(line1, line2)
+     File "trackback.py", line 3, in cat_twice
+       print_twice(cat)
+     File "trackback.py", line 6, in print_twice
+       print cat
+   NameError: global name 'cat' is not defined
+   ~~~
+   
+   上面这个叫做 **trackback**：It tells you what program file the error occurred in, and what line, and what functions were executing at the time. It also shows the line of code that caused the error.
+
+11. **Fruitful functions and void functions**
+    
+    * 能够 yield result 的函数才被作者认为是 Fruitful function。
+    * 相反，没有返回值的就是 void function 了。
+      
+      > **注意**：
+      > ~~~ bash
+        >>> p = print_twice('hello BigData')
+        hello BigData
+        hello BigData
+        >>> p
+        >>> print p
+        None
+        ~~~  
+      >
+      > The value **None** is not the same as the string *'None'*. It is a special value that has its own type:
+        ~~~ bash
+        >>> type(None)
+        <type 'NoneType'>
+        ~~~ 
+
+12. **Why functions?**
+
+    * 方法使程序变得更加简单
+    * 避免重复写同一份代码
+    * 易于调试
+    * 可以重复多次使用
+
+13. **Importing with from**
+    
+    **module**: A file that contains a collection of related functions and other definitions.
+
+14. Debugging
+
+15. Glossary
+
+16. **Exercise**
+
+    * *Exercise 3.4.*：Define a new function called *do_four* that takes a function object and a value and calls the function four times, passing the value as a parameter. There should be only two statements in the body of this function, not four.
+      ~~~ python
+      def do_twice_func(func, argu_from_func):
+         func(argu_from_func)
+         func(argu_from_func)
+
+      def printSth(thing):
+         print thing
+
+      do_twice_func(printSth, 'hello python')
+
+      def do_four_func(func, argu_from_func):
+         do_twice_func(func, argu_from_func)
+         do_twice_func(func, argu_from_func)
+
+      do_four_func(printSth, 'hello python, hello world')
+      ~~~
+   
+   * *Exercise 3.5.*：输出一个图形。
+     ~~~ python
+     # _*_ coding:utf-8 _*_
+
+     # 行
+     r = 0
+     # 列
+     c = 0
+
+     for i in range(11):
+        for j in range(11):
+           if i % 5 == 0 and j % 5 == 0:
+              print '+',
+           elif i % 5 == 0 and not j % 5 == 0:
+              print '-',
+           elif not i % 5 == 0 and j % 5 == 0:
+              print '|',
+           else:
+              print ' ',
+        print '\n', # print '' 
+     ~~~        
+   
+     ~~~ bash
+     # 输出结果
+     + - - - - + - - - - + 
+     |         |         | 
+     |         |         | 
+     |         |         | 
+     |         |         | 
+     + - - - - + - - - - + 
+     |         |         | 
+     |         |         | 
+     |         |         | 
+     |         |         | 
+     + - - - - + - - - - +
+     ~~~

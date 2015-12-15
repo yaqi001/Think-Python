@@ -25,6 +25,8 @@
 
    * **画出正方形**
      ~~~ python
+     # _*_ coding: utf-8 _*_
+
      from TurtleWorld import *
 
      world = TurtleWorld()
@@ -56,15 +58,98 @@
 
    指的就是上面用的 for 方法。
 
-3. 
+3. 练习画圆：
+   ~~~ bash
+   # _*_ coding:utf-8 _*_
+
+   from space import *
+   from math import *
+     
+   world = TurtleWorld()
+   bob = Turtle()
+   # 设置乌龟的初始地点 
+   pu(bob)
+   fd(bob, 300)
+   rt(bob, 90)
+   fd(bob, 300)
+     
+   # 设置让乌龟留下痕迹 
+   pd(bob)
+   def circle(t, r):
+      n = 100
+      l = 2.0 * pi * r / n
+      myploygon(t, n, l)
+    
+   circle(bob, 50)
+   ~~~
+
+4. **Encapsulation**（封装）
+
+   * Wrapping a piece of code up in a function is called **encapsulation**.
+   * Benefit0:It attaches a name to the code, which serves as a kind of documentation.
+   * Benefit1: if you re-use the code, it is more concise to call a function twice than to copy and paste the body!
+
+5. **Generalization**（泛化） 
+   
+   * Adding a parameter to a function is called **generalization**.
+   * **keyword arguments**
+     * If you have more than a few numeric arguments, it is easy to forget what they are, or what order they should be in. It is legal, and sometimes helpful, to include the names of the parameters in the argument list. 写上形式参数的名称，顺序就可以任意了。
+
+       ~~~ bash
+       myploygon(bob, n = 10, l = 50)
+       ~~~
+ 
+       或
+       ~~~ bash
+       myploygon(l = 50, staff = bob, n = 10)
+       ~~~      
+
+6. **Interface design**
+   * The **interface** of a function is a summary of how it is used: 
+     * what are the parameters?
+     * what does the function do?
+     * what is the return value?
+   
+   * An interface is **"clean"** if it is "as simple as possible, but not simpler."
 
 
+12. Exercise
+    
+    * Exercise 4.2. 
+      ~~~ python
+      # _*_ coding:utf-8 _*_
 
+      from TurtleWorld import *
+      import math
 
+      world = TurtleWorld()
+      bob = Turtle()
 
+      def arc(t, r, num):
+         angle = 360.0 / num
+         arc_length = 2 * math.pi * r * angle / 720
+         n = int(arc_length / 3) + 1
+         step_length = arc_length / n
+         step_angle = float(angle) * 2.0 / n
+         for f in range(num):
+            for i in range(n):
+               fd(t, step_length)
+               lt(t, step_angle)
+               #fd(t, step_length)
 
+            lt(t, angle)
 
+            for j in range(n):
+               fd(t, step_length)
+               lt(t, step_angle)
 
+            lt(t, 180 - angle)
+
+      bob.delay = 0.01
+      # num 是叶子的数量
+      arc(bob, r = 300, num = 6)
+      wait_for_user()
+      ~~~
 
 
 

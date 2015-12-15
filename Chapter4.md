@@ -150,6 +150,45 @@
       arc(bob, r = 300, num = 6)
       wait_for_user()
       ~~~
+    
+      # 规律
+      ~~~ python
+      # _*_ coding:utf-8 _*_
+
+      from TurtleWorld import *
+      import math
+
+      world = TurtleWorld()
+      bob = Turtle()
+
+      def arc(t, r, num):
+         angle = 360.0 / num
+	 arc_length = 2 * math.pi * r * (1 / 3.0)
+	 n = int(arc_length / 3) + 1
+	 step_length = arc_length / n
+	 # step_angle = float(angle) * 2.0 / n
+	 step_angle = 120.0 / n
+
+	 for f in range(num):
+	    for i in range(n):
+	       fd(t, step_length)
+	       lt(t, step_angle)
+	       #fd(t, step_length)
+
+               lt(t, 60)
+ 
+               for j in range(n):
+	          fd(t, step_length)
+		  lt(t, step_angle)
+
+	    lt(t, 67.5)
+
+      bob.delay = 0.01
+      # num 是叶子的数量arc(bob, r = 300, num = 12)
+      arc(bob, r = 50, num = 48)
+      wait_for_user()
+      ~~~ 
+
 
 
 

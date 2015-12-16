@@ -127,6 +127,48 @@
 
       def arc(t, r, num):
          angle = 360.0 / num
+         arc_length = 2 * math.pi * r * angle / 360
+         n = int(arc_length / 3) + 1
+         step_length = arc_length / n
+         step_angle = float(angle) / n
+         for f in range(num):
+            for i in range(n):
+               fd(t, step_length)
+               lt(t, step_angle)
+               #fd(t, step_length)
+
+            lt(t, 180 - angle)
+
+            for j in range(n):
+               fd(t, step_length)
+               lt(t, step_angle)
+
+            rt(t, 180)
+
+      bob.delay = 0.01
+      # num 是叶子的数量
+      arc(bob, r = 90, num = 7)
+      ~~~
+      
+      以上代码执行后的结果：
+
+      ![七叶](../images/sevenleef.png)
+
+      下图是 10 片叶子的图形：
+
+      ![十叶](../images/tenleef.png)
+
+      ~~~ python
+      # _*_ coding:utf-8 _*_
+
+      from TurtleWorld import *
+      import math
+
+      world = TurtleWorld()
+      bob = Turtle()
+
+      def arc(t, r, num):
+         angle = 360.0 / num
          arc_length = 2 * math.pi * r * angle / 720
          n = int(arc_length / 3) + 1
          step_length = arc_length / n
@@ -150,44 +192,107 @@
       arc(bob, r = 300, num = 6)
       wait_for_user()
       ~~~
-    
-      # 规律
-      ~~~ python
-      # _*_ coding:utf-8 _*_
+      
+      画出的图形：
 
+      ![六片重叠的叶子](../images/six_leef.png)
+      
+      ~~~ python
+      # 通用方法，由使用者手动修改叶子的数量的既可
       from TurtleWorld import *
       import math
 
       world = TurtleWorld()
       bob = Turtle()
 
+      def angle_(num):
+         if num == 3:
+            return 180
+         else:
+            f = math.log(num / 3, 2)
+            a = angle_(3 * 2 ** (f - 1))
+            a = a - 60 / (2 ** (f - 1))
+            return a
+
       def arc(t, r, num):
          angle = 360.0 / num
-	 arc_length = 2 * math.pi * r * (1 / 3.0)
-	 n = int(arc_length / 3) + 1
-	 step_length = arc_length / n
-	 # step_angle = float(angle) * 2.0 / n
-	 step_angle = 120.0 / n
+         arc_length = 2 * math.pi * r * (1 / 3.0)
+         n = int(arc_length / 3) + 1
+         step_length = arc_length / n
+         step_angle = 120.0 / n
 
-	 for f in range(num):
-	    for i in range(n):
-	       fd(t, step_length)
-	       lt(t, step_angle)
-	       #fd(t, step_length)
+         for f in range(num):
+            for i in range(n):
+               fd(t, step_length)
+               lt(t, step_angle)
 
-               lt(t, 60)
- 
-               for j in range(n):
-	          fd(t, step_length)
-		  lt(t, step_angle)
+            lt(t, 60)
 
-	    lt(t, 67.5)
+            for j in range(n):
+               fd(t, step_length)
+               lt(t, step_angle)
+
+            lt(t, angle_(num))
 
       bob.delay = 0.01
       # num 是叶子的数量arc(bob, r = 300, num = 12)
-      arc(bob, r = 50, num = 48)
+      arc(bob, r = 50, num = 192)
       wait_for_user()
-      ~~~ 
+      ~~~
+
+      下面叶子数为 96 时的图形：
+      叶子的片数是有一定要求的：3 * 2 ** n
+
+      ![96 片重叠的叶子](../images/ns_leef.png)
+  
+    * Exercise 4.3.
+      ~~~ python
+      # _*_ coding:utf-8 _*_
+
+      from TurtleWorld import *
+      from math import cos, pi
+
+      world = TurtleWorld()
+      bob = Turtle()
+
+      def shape(t, n, l):
+         """
+         n: 边的数量
+         l: 左右边长
+         """
+         # A: 顶角
+         A = 360.0 / n
+
+         # a: 边角
+         a = (180 - A) / 2.0
+
+         # d: 底边长
+         angle = 2 * pi * a / 360.0 
+         d = 2.0 * cos(angle) * l
+
+         for i in range(n):
+            fd(t, l)
+            lt(t, (180 - a))
+            fd(t, d)
+            lt(t, (180 - a))
+            fd(t, l)
+            lt(t, 180)
+
+      bob.delay = 0.01
+      shape(bob, 10, 50)
+      wait_for_user()
+      ~~~
+      
+      10 边形，如下图：
+
+      ![10变形](../images/shape.png) 
+
+      > **注意：**
+      >
+      > **<font color="red">凡是进行三角运算的都要将数值换算成弧度角啊！长记性啊！！！</font>**
+      > ~~~ python
+        angle = 2 * pi * a / 360.0
+        ~~~
 
 
 

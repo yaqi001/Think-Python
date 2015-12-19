@@ -111,6 +111,27 @@
      * what is the return value?
    
    * An interface is **"clean"** if it is "as simple as possible, but not simpler."
+     * 该小节中，作者举了一个如何优化接口的例子：
+       ~~~ python
+       def circle(t, r):
+          circumference = 2 * pi * r
+          n = 50
+          length = circumference / n
+          polygon(t, n, length)
+       ~~~
+  
+       在上面这个函数中，作者为了做到让该接口看起来尽可能的 simple，而舍弃了在参数中加上 n。所以问题出现了：一个固定的 n，意味着当我想要看到一个大大的圆而提供了一个大大的 r 时，length 也随即变大了，这会导致圆已不再是圆的窘境；而当我想要一个小小的圆而提供了一个小小的 r 时，length 又会变的非常小，圆是更圆了，不过耗费的时间也长了。于是作者给出了一个办法，让 n 与圆的周长成正比，当圆比较大时，n 也随即变大，反之亦然。
+       ~~~ python
+       def circle(t, r):
+          circumference = 2 * pi * r
+          n = int(circumference / 3) + 1
+          length = circumference / n
+          polygon(t, n, length)
+       ~~~
+ 
+           
+     
+       
 
 
 12. Exercise

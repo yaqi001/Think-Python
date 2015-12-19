@@ -129,10 +129,15 @@
           polygon(t, n, length)
        ~~~
  
-           
-     
-       
+7. **Refactoring**（重构）
+   
+8. A development plan
 
+9. docstring
+
+10. Debugging   
+       
+11. Glossary
 
 12. Exercise
     

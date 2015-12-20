@@ -17,7 +17,11 @@
    > Strictly speaking, the operands of the logical operators should be boolean expressions, but Python is not very strict. Any nonzero number is interpreted as “true.”
      ~~~ python
      -1.1 or True
-     -1.1  # 这里为什么会返回 -1.1，看 17 那个例子秒懂。
+     -1.1  # 这里为什么会返回 -1.1？因为 -1.1 is interpreted as "true"，所以不会再往下执行到 True，于是返回 -1.1
+     >>> True or -1.1
+	 True
+	 >>> False or -1.1
+	 -1.1
 	 >>> -1.1 and True
 	 True
      >>> True or 17
@@ -25,27 +29,38 @@
      ~~~
 
 4. 条件执行
+   * 在不需要函数进行任何操作的时候，函数体中写 pass 即可。
+     ~~~ bash
+     >>> if x < 0:
+	 ...    pass
+	 ... 
+     ~~~
 
 5. 选择执行
+   ~~~ python
+   if x % 2 == 0:
+	  print 'x is even'
+   else:
+      print 'x is odd'
+   ~~~
 
 6. Chained conditionals
+   * **elif** is an abbreviation of “else if.”
 
 7. Nested conditionals
-
-8. 6. Chained conditionals
-
-7. Nested conditionals
-
-8. 6. Chained conditionals
-
-7. Nested conditionals
-
-8. 6. Chained conditionals
-
-7. Nested conditionals
-
-8. 6. Chained conditionals
-
-7. Nested conditionals
+   * 作者认为：即便缩进使得嵌套条件语句结构更加明显，但是读的效率却很低。于是作者想要避免使用嵌套语句，将其改为逻辑语句来执行。
+     ~~~ python
+     if x > 0:
+        if x < 10:
+           print 'x is less than zero and greater than ten.'
+     ~~~
+     
+     上面的嵌套条件语句可以改写为如下语句：
+     ~~~ python
+     if x > 0 and x < 10:
+        print 'x is less than zero and greater than ten.'
+     ~~~
 
 8. 
+
+9. 

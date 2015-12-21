@@ -130,10 +130,117 @@
        ~~~
  
 7. **Refactoring**（重构）
-   
-8. A development plan
+   * 这里作者给出的定义是：重新安排程序以升级函数的接口并使得代码可以重用的过程我们称为**重构**。下面用实例说话：
+     ~~~ python
+     # 生成多边形的函数
+     def ploygon(t, n, length):
+        angle = 360.0 / n
 
-9. docstring
+        for i in range(n):
+           fd(t, length)
+           lt(t, angle)
+
+     # 生成弧的函数
+     def arc(t, r, num):
+        angle = 360.0 / n
+        arc_length = 2 * math.pi * r * angle / 360
+        n = int(arc_length / 3) + 1
+        step_length = arc_length / n
+        step_angle = float(angle) / n
+
+        for i in range(num):
+           fd(t, step_length)
+           lt(t, step_angle)
+     ~~~
+
+     细看可知，以上两个函数中都有如下循环语句，为了避免每次都重新写一次这样的结构，所以我们将其提取出来并包装成一个函数，以便下次使用。
+     ~~~ python
+     for i in range(n):
+        fd(t, length)
+        tl(t, angle)
+     ~~~
+     
+     将上面的循环体写成函数：
+     ~~~ python
+     def draw(t, n, length, angle):
+        for i in range(n):
+           fd(t, length)
+           lt(t, angle)
+     ~~~
+     
+     于是乎，新的多边形函数和弧函数就成了下面这样：
+     ~~~ python
+     def ploygon(t, n, length):
+        angle = 360.0 / n
+        draw(t, n, length, angle)
+
+     def arc(t, r, num):
+        angle = 360.0 / num
+        arc_length = 2 * math.pi * r * angle / 360
+        n = int(arc_length) / 3 + 1
+        step_length = arc_length / num
+        step_angle = float(angle) / num
+        draw(t, n, step_length, step_angle)    
+     ~~~     
+
+8. A development plan
+   
+   1. 首先写一些代码出来，可以没有函数。
+   2. 一旦这段代码可以运行成功，将这段代码封装起来并提供一个函数名称。
+   3. 泛化这段函数，即添加一些合适的参数。
+   4. 重复 1 - 3 的步骤，写出一些函数出来。
+   5. 寻找可以重构代码的机会。例如，当你看到有一段代码被重复使用了，可以考虑将代码重构了。
+
+9. **docstring**
+   
+   * A docstring is a string at the beginning of a function that explains the interface.
+     ~~~ python
+     def arc(t, r, angle):
+        """Draws an arc with the given radius and angle.
+        t: Turtle
+        r: radius
+        angle: angle subtended by the arc, in degrees
+        """
+        arc_length = 2 * math.pi * r * abs(angle) / 360
+        n = int(arc_length / 4) + 1
+        step_length = arc_length / n
+        step_angle = float(angle) / n
+
+        # making a slight left turn before starting reduces
+        # the error caused by the linear approximation of the arc
+        lt(t, step_angle/2)
+        polyline(t, n, step_length, step_angle)
+        rt(t, step_angle/2)
+        ~~~     
+
+   * This docstring is a triple-quoted string, also known as a multiline string because the triple quotes allow the string to span more than one line. 例如：
+     ~~~ bash
+     >>> print """a
+     ... b
+     ... c
+     ... d
+     ... e
+     ... f
+     ... g
+     ... """
+     a
+     b
+     c
+     d
+     e
+     f
+     g
+
+     >>> print 'a # 在输入 a 之后，回车
+       File "<stdin>", line 1
+         print 'a
+                ^
+     SyntaxError: EOL while scanning string literal
+     >>> print 'a\nb\n'
+     a
+     b
+
+     ~~~
 
 10. Debugging   
        
@@ -320,21 +427,4 @@
         angle = 2 * pi * a / 360.0
         ~~~
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
+ 

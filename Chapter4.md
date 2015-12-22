@@ -427,4 +427,48 @@
         angle = 2 * pi * a / 360.0
         ~~~
 
- 
+    * 螺旋
+      ~~~ python
+      # _*_ coding:utf-8 _*_
+
+      from TurtleWorld import *
+      from math import *
+
+      def spiral(t, n, right_angle_side1, angle):
+         global Angle
+         global side
+         Angle = angle
+         angle_radian = Angle * pi / 180
+         right_angle_side0 = float(right_angle_side1) / tan(angle_radian)
+         side = float(right_angle_side1) / sin(angle_radian)
+         pu(t)
+         fd(t, 800)
+         rt(t, 90)
+         fd(t, 300)
+         pd(t)
+         fd(t, right_angle_side0)
+         lt(t, 90)
+
+         def draw():
+            global side
+            global Angle
+            fd(t, right_angle_side1)
+            lt(t, Angle)
+            Angle_radian = atan(right_angle_side1 / float(side))
+            # 注意！
+            Angle = Angle_radian * 180 / pi
+            side = float(right_angle_side1) / sin(Angle_radian)
+
+         for i in range(n):
+            print '-----'
+            print Angle
+            print '====='
+            print side
+            draw()
+
+      world = TurtleWorld()
+      bob = Turtle()
+      bob.delay = 0.001
+      spiral(bob, 2000, 5, 60)
+      wait_for_user()
+      ~~~ 

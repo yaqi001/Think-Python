@@ -455,7 +455,7 @@
             fd(t, right_angle_side1)
             lt(t, Angle)
             Angle_radian = atan(right_angle_side1 / float(side))
-            # 注意！
+            # 注意！Angle_radian 是从 atan() 这个三角函数出来的，所以需要将其转换为角度角才能用于画图函数 fd() 等。
             Angle = Angle_radian * 180 / pi
             side = float(right_angle_side1) / sin(Angle_radian)
 
@@ -472,3 +472,5 @@
       spiral(bob, 2000, 5, 60)
       wait_for_user()
       ~~~ 
+     
+      > **注意：**：三角函数外面的都用角度角；三角函数里面的都用弧度角。

@@ -61,6 +61,14 @@
         print 'x is less than zero and greater than ten.'
      ~~~
 
-8. 
+8. 递归
+   * A function that calls itself is **recursive**; the process is called **recursion**. 
+
+9. 递归函数的堆栈图
+   * Every time a function gets called, Python creates a new function frame, which contains the function’s local variables and parameters. [递归函数执行过程](../images/out.ogv)
+     [global](../images/a.ogv)
+     
+
+
 
 9. 

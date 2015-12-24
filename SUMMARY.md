@@ -4,4 +4,5 @@
    * [Chapter3](Chapter3.md)
    * [Chapter4](Chapter4.md)
    * [Chapter5](Chapter5.md)
+   * [Chapter6](Chapter6.md)
    * [images](images/README.md)

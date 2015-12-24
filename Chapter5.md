@@ -79,4 +79,10 @@
     qiqi
     ~~~
 
-12.
+12. Debugging
+    * IndentationError: unexpected indent
+    * valueError: math domain error —— 例如某些数学公式的参数中不能是 0 or 1 ...，或许是因为 python 不会返回无穷值的关系吧。
+
+13. Glossary
+
+14. Exercise

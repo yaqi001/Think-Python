@@ -21,11 +21,12 @@
 2. Incremental development（增量式开发）
 
 3. Composition
+   * As you should expect by now, you can call one function from within another. This ability is called **composition**.
 
 4. 布尔函数
 
 5. 更多的递归
 
-6. **Leap of faith**
+6. **Leap of faith**（一百八十度转变）
 
 

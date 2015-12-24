@@ -285,11 +285,11 @@
       
       以上代码执行后的结果：
 
-      ![七叶](../images/sevenleef.png)
+      ![七叶](images/sevenleef.png)
 
       下图是 10 片叶子的图形：
 
-      ![十叶](../images/tenleef.png)
+      ![十叶](images/tenleef.png)
 
       ~~~ python
       # _*_ coding:utf-8 _*_
@@ -328,7 +328,7 @@
       
       画出的图形：
 
-      ![六片重叠的叶子](../images/six_leef.png)
+      ![六片重叠的叶子](images/six_leef.png)
       
       ~~~ python
       # 通用方法，由使用者手动修改叶子的数量的既可
@@ -376,7 +376,7 @@
       下面叶子数为 96 时的图形：
       叶子的片数是有一定要求的：3 * 2 ** n
 
-      ![96 片重叠的叶子](../images/ns_leef.png)
+      ![96 片重叠的叶子](images/ns_leef.png)
   
     * Exercise 4.3.
       ~~~ python
@@ -418,7 +418,7 @@
       
       10 边形，如下图：
 
-      ![10变形](../images/shape.png) 
+      ![10变形](images/shape.png) 
 
       > **注意：**
       >

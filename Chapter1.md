@@ -4,8 +4,8 @@
 
 1. **The differences between **interpreters** and **compilers**?**
    
-   ![interpreters](../images/example.png)
-   ![compilers](../images/second.png)
+   ![interpreters](images/example.png)
+   ![compilers](images/second.png)
 
 2. **What is a program?**
 

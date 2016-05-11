@@ -17,6 +17,46 @@
 2. **变量**
    
    * 关于 **type()** 函数
+     ~~~ python
+     >>> type()
+	  Traceback (most recent call last):
+		 File "<stdin>", line 1, in <module>
+	  TypeError: type() takes 1 or 3 arguments
+     >>> type("1")
+	  <type 'str'>
+	  >>> type('2')
+	  <type 'str'>
+	  >>> type(1.0)
+	  <type 'float'>
+	  >>> type(1.000)
+	  <type 'float'>
+	  >>> type(0)
+	  <type 'int'>
+	  >>> type(T)
+	  Traceback (most recent call last):
+		 File "<stdin>", line 1, in <module>
+	  NameError: name 'T' is not defined
+	  >>> type(true)
+	  Traceback (most recent call last):
+		 File "<stdin>", line 1, in <module>
+	  NameError: name 'true' is not defined
+	  >>> type(t)
+	  Traceback (most recent call last):
+		 File "<stdin>", line 1, in <module>
+	  NameError: name 't' is not defined
+	  >>> type('true')
+	  <type 'str'>
+	  >>> type('')
+	  <type 'str'>
+	  >>> type(None)
+	  <type 'NoneType'>
+	  >>> type([])
+	  <type 'list'>
+	  >>> type(())
+	  <type 'tuple'>
+	  >>> type({})
+	  <type 'dict'>
+     ~~~
 
 3. **变量名 & 关键字**
    

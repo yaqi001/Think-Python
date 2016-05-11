@@ -16,16 +16,16 @@
    > **重要**：
    > Strictly speaking, the operands of the logical operators should be boolean expressions, but Python is not very strict. Any nonzero number is interpreted as “true.”
      ~~~ python
-     -1.1 or True
-     -1.1  # 这里为什么会返回 -1.1？因为 -1.1 is interpreted as "true"，所以不会再往下执行到 True，于是返回 -1.1
-     >>> True or -1.1
-	 True
-	 >>> False or -1.1
-	 -1.1
-	 >>> -1.1 and True
-	 True
-     >>> True or 17
-     True
+     >>>> -1.1 or True
+          -1.1  # 这里为什么会返回 -1.1？因为 -1.1 is interpreted as "true"，所以不会再往下执行到 True，于是返回 -1.1
+     >>>> True or -1.1
+          True 
+     >>>> False or -1.1
+	  -1.1
+     >>>> -1.1 and True
+	  True
+     >>>> True or 17
+          True
      ~~~
 
 4. 条件执行

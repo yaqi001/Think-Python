@@ -1,4 +1,4 @@
-<script type="text/javascript" src="math.js></script>
+<script type="text/javascript" src="math.js"></script>
 
 # The way of the program
 
